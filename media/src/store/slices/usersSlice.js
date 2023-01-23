@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { addUser } from "../thunks/addUser";
-import { fetchUsers } from "../thunks/fetchUsers";
-import { removeUser } from "../thunks/removeUser";
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchUsers } from '../thunks/fetchUsers';
+import { addUser } from '../thunks/addUser';
+import { removeUser } from '../thunks/removeUser';
 
 const usersSlice = createSlice({
-  name: "users",
+  name: 'users',
   initialState: {
-    data: [],
     isLoading: false,
+    data: [],
     error: null,
   },
   extraReducers(builder) {
@@ -22,6 +22,7 @@ const usersSlice = createSlice({
       state.isLoading = false;
       state.error = action.error;
     });
+
     builder.addCase(addUser.pending, (state, action) => {
       state.isLoading = true;
     });
@@ -33,6 +34,7 @@ const usersSlice = createSlice({
       state.isLoading = false;
       state.error = action.error;
     });
+
     builder.addCase(removeUser.pending, (state, action) => {
       state.isLoading = true;
     });
